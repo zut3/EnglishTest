@@ -1,20 +1,18 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
 from serializers import main as serializers
 from . import models
 
-class TestsView(generics.ListAPIView):
-    serializer_class = serializers.TestSerializer
-    
-    def get_queryset(self):
-        return models.Test.objects.all()
 
-class CreateTests(generics.CreateAPIView):
-    authentication_classes = [TokenAuthentication]
+class CreateView(generics.CreateAPIView):
+    serializer_class = serializers.TestSerializer
     permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(who_created=self.request.user)
+
+class ListView(generics.ListAPIView):
     serializer_class = serializers.TestSerializer
     
     def get_queryset(self):
         return models.Test.objects.all()
-

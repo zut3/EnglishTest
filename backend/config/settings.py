@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'main',
-    'accounts'
+    'django_filters',
+    'accounts',
+    'answers',
+    'tests',
+    'steps'
 ]
 
 MIDDLEWARE = [
@@ -78,6 +81,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',  
     ],
+    'DEFAULT_FILTER_BACKENDS': 
+        ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 # Database
