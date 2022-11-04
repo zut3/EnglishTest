@@ -9,7 +9,7 @@ class CreateView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(who_created=self.request.user)
+        serializer.save(who_create_id=self.request.user.id)
 
 class ListView(generics.ListAPIView):
     serializer_class = serializers.TestSerializer

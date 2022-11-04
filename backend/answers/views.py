@@ -10,6 +10,7 @@ class CreateView(generics.CreateAPIView):
 
 class ListView(generics.ListAPIView):
     serializer_class = serializers.AnswerSerializer
+    lookup_field = 'answers'
     
     def get_queryset(self):
         return models.Answer.objects.all()
